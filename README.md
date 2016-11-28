@@ -3,7 +3,7 @@
 ## Description
 
 This tool handles localized strings translation with a database.
-You can import string, search and translate for several languages,
+You can import strings, search, group and translate to several languages,
 then produce .str string files from the database content.
 
 ## Prerequisites
@@ -29,9 +29,10 @@ then produce .str string files from the database content.
 2. Connect to the database
 3. Create the tables to store localized strings
 4. Define the global settings (default language, translation language)
-5. Import existing strings from .str files
-6. Translate strings to target languages
-7. Produce 
+5. Import existing strings from sources
+6. Group strings together
+7. Translate strings to target languages
+8. Produce .str string files
 
 ## See also
 
