@@ -1,0 +1,45 @@
+SCHEMA fglstrmg
+
+ACTION DEFAULTS
+&include "comactdef.inc"
+   ACTION set_filter(TEXT="Set filter",ACCELERATOR=Control-F,CONTEXTMENU=NO)
+END
+
+LAYOUT ( VERSION="1.01", TEXT="Organize Text Groups" )
+GRID
+{
+ Filter: [flt                                                             ]
+<t t1                                                                     >
+ Identifier                               Group               Num   Lock
+[col1                                    |col2               |col3 |col4]
+[col1                                    |col2               |col3 |col4]
+[col1                                    |col2               |col3 |col4]
+[col1                                    |col2               |col3 |col4]
+[col1                                    |col2               |col3 |col4]
+<                                                                         >
+}
+END
+END
+
+
+TABLES
+FTTEXT
+END
+
+ATTRIBUTES
+BUTTONEDIT flt = formonly.idfilter, ACTION=apply_filter, IMAGE="filter";
+EDIT col1 = fttext.fttext_ident, SCROLL, NOENTRY;
+COMBOBOX col2 = fttext.fttext_group, NOT NULL, INITIALIZER=cmbinit_ftgroup;
+LABEL col3 = fttext.fttext_num, COLOR=RED;
+CHECKBOX col4 = fttext.fttext_locked, VALUECHECKED="y", VALUEUNCHECKED="n";
+TABLE t1: table1, UNMOVABLECOLUMNS, UNHIDABLECOLUMNS;
+END
+
+INSTRUCTIONS
+SCREEN RECORD sa(
+   fttext.fttext_ident,
+   fttext.fttext_group,
+   fttext.fttext_num,
+   fttext.fttext_locked);
+END
+

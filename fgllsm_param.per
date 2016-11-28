@@ -1,0 +1,33 @@
+LAYOUT(VERSION="1.01",TEXT="Parameters")
+GRID
+{
+  Development language:      [dl                            ]
+  Translation language:      [cl                            ]
+  Confirm deletion:          [cd                            ]
+  Confirm import:            [ci                            ]
+  Export directory:          [ed                            ]
+  File name format:          [ff                            ]
+}
+END
+END
+
+ATTRIBUTES
+COMBOBOX   dl = FORMONLY.devlang, NOT NULL, REQUIRED,
+                INITIALIZER=cmbinit_ftlang,
+                COMMENTS="Language of the source files";
+COMBOBOX   cl = FORMONLY.curlang, NOT NULL, REQUIRED,
+                INITIALIZER=cmbinit_ftlang,
+                COMMENTS="Language used for translation";
+COMBOBOX   cd = FORMONLY.confdel, NOT NULL, REQUIRED,
+                ITEMS=(("y","Yes"),("n","No")),
+                COMMENTS="Language used for translation";
+COMBOBOX   ci = FORMONLY.confimp, NOT NULL, REQUIRED,
+                ITEMS=(("y","Yes"),("n","No")),
+                COMMENTS="Language used for translation";
+BUTTONEDIT ed = FORMONLY.exportdir, NOT NULL, REQUIRED,
+                IMAGE="folder", ACTION=browsefiles,
+                COMMENTS="Export directory, %1 = language name";
+EDIT       ff = FORMONLY.fnformat, NOT NULL, REQUIRED,
+                COMMENTS="Format for generated files %1 = group name";
+END
+

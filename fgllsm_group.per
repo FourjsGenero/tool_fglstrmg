@@ -1,0 +1,52 @@
+SCHEMA fglstrmg
+
+ACTION DEFAULTS
+&include "comactdef.inc"
+  ACTION save(TEXT="Save",IMAGE="disk",ACCELERATOR=Control-S,COMMENT="Save changes",CONTEXTMENU=NO)
+  ACTION find(TEXT="Find",IMAGE="find",ACCELERATOR=Control-F,COMMENT="Search a group",CONTEXTMENU=NO)
+END
+
+--include "toolbar1.inc"
+
+LAYOUT(VERSION="1.00",TEXT="Groups")
+VBOX
+TABLE (DOUBLECLICK=select,UNHIDABLECOLUMNS,UNMOVABLECOLUMNS)
+{
+ Num     Identifier                                      Com
+[col1   |col2                                           |col3]
+[col1   |col2                                           |col3]
+[col1   |col2                                           |col3]
+[col1   |col2                                           |col3]
+[col1   |col2                                           |col3]
+[col1   |col2                                           |col3]
+}
+END
+GRID
+{
+<g g1                                                      >
+ Name: [id                                                ]
+ Comment:
+ [com                                                     ]
+ [                                                        ]
+ [                                                        ]
+}
+END
+END
+
+TABLES
+ftgroup
+END
+
+ATTRIBUTES
+EDIT col1      = ftgroup.ftgroup_num, NOENTRY, COLOR=RED;
+EDIT col2      = ftgroup.ftgroup_ident, NOT NULL;
+EDIT col3      = ftgroup.ftgroup_comment, NOENTRY, HIDDEN;
+GROUP g1       : TEXT="Group info";
+EDIT id        = formonly.ident, NOT NULL, REQUIRED;
+TEXTEDIT com   = formonly.comment,STRETCH=X, WANTNORETURNS;
+END
+
+INSTRUCTIONS
+SCREEN RECORD sa(ftgroup.*);
+END
+

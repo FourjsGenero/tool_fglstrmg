@@ -1,0 +1,55 @@
+SCHEMA fglstrmg
+
+ACTION DEFAULTS
+&include "comactdef.inc"
+  ACTION save(TEXT="Save",IMAGE="disk",ACCELERATOR=Control-S,COMMENT="Save changes",CONTEXTMENU=NO)
+  ACTION find(TEXT="Find",IMAGE="find",ACCELERATOR=Control-F,COMMENT="Search a group",CONTEXTMENU=NO)
+END
+
+--include "toolbar1.inc"
+
+LAYOUT(VERSION="1.00",TEXT="Groups")
+VBOX
+TABLE (DOUBLECLICK=select,UNHIDABLECOLUMNS,UNMOVABLECOLUMNS)
+{
+ Num    Identifier  Name                                 Com
+[col1  |col2       |col3                                |col4]
+[col1  |col2       |col3                                |col4]
+[col1  |col2       |col3                                |col4]
+[col1  |col2       |col3                                |col4]
+[col1  |col2       |col3                                |col4]
+[col1  |col2       |col3                                |col4]
+}
+END
+GRID
+{
+<g g1                                                      >
+ Id: [id            ] Name: [name                         ]
+ Comment:
+ [com                                                     ]
+ [                                                        ]
+ [                                                        ]
+}
+END
+END
+
+TABLES
+ftlang
+END
+
+ATTRIBUTES
+EDIT col1      = ftlang.ftlang_num, NOENTRY, COLOR=RED;
+EDIT col2      = ftlang.ftlang_ident, NOT NULL, SCROLL;
+EDIT col3      = ftlang.ftlang_name, NOT NULL, SCROLL;
+EDIT col4      = ftlang.ftlang_comment, NOENTRY, HIDDEN;
+GROUP g1       : TEXT="Language info";
+EDIT id        = formonly.ident, NOT NULL, REQUIRED,
+                 COMMENT="Tip: Use the locale identifier for simplicity";
+EDIT name      = formonly.name, NOT NULL, REQUIRED;
+TEXTEDIT com   = formonly.comment,STRETCH=X, WANTNORETURNS;
+END
+
+INSTRUCTIONS
+SCREEN RECORD sa(ftlang.*);
+END
+

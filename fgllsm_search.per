@@ -1,0 +1,59 @@
+SCHEMA fglstrmg
+
+ACTION DEFAULTS
+  ACTION accept (TEXT="Search", ACCELERATOR=Enter, ACCELERATOR2=Return, CONTEXTMENU=NO)
+  ACTION select (TEXT="Select", CONTEXTMENU=NO)
+END
+
+LAYOUT(VERSION="1.00",STYLE="dialog3",TEXT="Search a text in the database")
+VBOX
+GROUP (TEXT="Search filter")
+GRID
+{
+  Language   :    [txtlang                                         ]
+  Identifier :    [txtident                                        ]
+  Text body  :    [txtbody                                         ]
+                                                    [bsearch       ] 
+}
+END
+END
+TABLE (UNHIDABLECOLUMNS,UNMOVABLECOLUMNS,DOUBLECLICK=select)
+{
+ Identifier                               Group               Num
+[col1                                    |col2               |col3 ]
+[col1                                    |col2               |col3 ]
+[col1                                    |col2               |col3 ]
+[col1                                    |col2               |col3 ]
+[col1                                    |col2               |col3 ]
+}
+END
+GRID
+{
+[bselect   |bcancel   ]
+}
+END
+END
+END
+
+TABLES
+FTTEXT,FTGROUP
+END
+
+ATTRIBUTES
+COMBOBOX txtlang  = FORMONLY.fttrans_lang TYPE INTEGER, INITIALIZER=cmbinit_ftlang;
+EDIT     txtident = FORMONLY.fttext_ident TYPE CHAR;
+EDIT     txtbody  = FORMONLY.fttrans_value TYPE CHAR;
+BUTTON   bsearch : accept;
+EDIT col1 = fttext.fttext_ident, SCROLL, NOENTRY;
+EDIT col2 = ftgroup.ftgroup_ident, NOENTRY;
+EDIT col3 = fttext.fttext_num, COLOR=RED, NOENTRY;
+BUTTON   bselect : select;
+BUTTON   bcancel : cancel;
+END
+
+INSTRUCTIONS
+SCREEN RECORD sa(
+   fttext.fttext_ident,
+   ftgroup.ftgroup_ident,
+   fttext.fttext_num);
+END

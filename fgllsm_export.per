@@ -1,0 +1,61 @@
+SCHEMA fglstrmg
+
+ACTION DEFAULTS
+  ACTION sel_all ( TEXT = "Select all", COMMENT="Select all groups", CONTEXTMENU=NO )
+  ACTION desel_all ( TEXT = "Deselect all", COMMENT="De-select all groups", CONTEXTMENU=NO )
+END
+
+LAYOUT ( VERSION="1.01", TEXT="Export Strings" )
+GRID
+{
+<g g1                                                                                  >
+ Destination directory:  [dir                                                          ]
+ Language:               [lng                                                          ]
+ File name format:       [fnf                      ]
+<                                                                                      >
+<t t1                                                                            > [sa ]
+ Sel  Text group                                                            Num    [da ]
+[c1  |col2                                                                 |col3 ]
+[c1  |col2                                                                 |col3 ]
+[c1  |col2                                                                 |col3 ]
+[c1  |col2                                                                 |col3 ]
+[c1  |col2                                                                 |col3 ]
+[c1  |col2                                                                 |col3 ]
+[c1  |col2                                                                 |col3 ]
+[c1  |col2                                                                 |col3 ]
+[c1  |col2                                                                 |col3 ]
+[c1  |col2                                                                 |col3 ]
+<                                                                                >
+
+
+}
+END
+END
+
+TABLES
+FTTEXT
+END
+
+ATTRIBUTES
+GROUP g1: group1, TEXT = "Export destination";
+TABLE t1: table1, UNMOVABLECOLUMNS, UNHIDABLECOLUMNS;
+BUTTON sa: sel_all, IMAGE="hook";
+BUTTON da: desel_all, IMAGE="hand";
+BUTTONEDIT dir  = FORMONLY.exportdir, NOT NULL, ACTION=ofile, IMAGE="diropen",
+                  COMMENTS="Dir name can hold %1 to use selected language";
+COMBOBOX lng = FORMONLY.explanguage, SIZEPOLICY=DYNAMIC, NOT NULL;
+EDIT fnf  = FORMONLY.fnformat, NOT NULL,
+            COMMENTS="File name must hold %1 to use the group name";
+CHECKBOX c1     = FORMONLY.selected, NOT NULL;
+LABEL col2      = fttext.fttext_ident;
+LABEL col3      = fttext.fttext_num, COLOR=RED;
+END
+
+INSTRUCTIONS
+SCREEN RECORD sa(
+   FORMONLY.selected,
+   fttext.fttext_ident,
+   fttext.fttext_num
+);
+END
+

@@ -1,0 +1,147 @@
+SCHEMA fglstrmg
+
+ACTION DEFAULTS
+&include "comactdef.inc"
+   ACTION close(TEXT="Quit",IMAGE="quit",CONTEXTMENU=NO)
+   ACTION import(TEXT="Import",IMAGE="import",COMMENT="Import strings from sources",CONTEXTMENU=NO,              ACCELERATOR=CONTROL-I)
+   ACTION export(TEXT="Export",IMAGE="export",COMMENT="Generate STR files from database",CONTEXTMENU=NO,         ACCELERATOR=CONTROL-E)
+   ACTION newtxt(TEXT="New",IMAGE="new",COMMENT="Create a new text",CONTEXTMENU=NO,                              ACCELERATOR=CONTROL-N)
+   ACTION deltxt(TEXT="Delete",IMAGE="eraser",COMMENT="Delete the current text",CONTEXTMENU=NO,                  ACCELERATOR=CONTROL-D)
+   ACTION cpytxt(TEXT="Copy",IMAGE="copy",COMMENT="Copy current text",CONTEXTMENU=NO,                            ACCELERATOR=CONTROL-U)
+   ACTION lcktxt(TEXT="Lock",IMAGE="lock",COMMENT="Switch lock on current text",CONTEXTMENU=NO,                  ACCELERATOR=CONTROL-L)
+   ACTION prvtxt(TEXT="Previous",IMAGE="prev",COMMENT="Move to previous text in list",CONTEXTMENU=NO,            ACCELERATOR=CONTROL-K)
+   ACTION nxttxt(TEXT="Next",IMAGE="next",COMMENT="Move to next text in list",CONTEXTMENU=NO,                    ACCELERATOR=CONTROL-J)
+   ACTION parameters(TEXT="Params",IMAGE="prop",COMMENT="Setup parameters",CONTEXTMENU=NO,                       ACCELERATOR=F3)
+   ACTION groups(TEXT="Groups",IMAGE="group",COMMENT="Edit groups",CONTEXTMENU=NO,                               ACCELERATOR=F4)
+   ACTION languages(TEXT="Langs",IMAGE="lingua",COMMENT="Edit languages",CONTEXTMENU=NO,                         ACCELERATOR=F5)
+   ACTION delgroup(TEXT="DelGrp",IMAGE="garbage",COMMENT="Delete the whole group of texts",CONTEXTMENU=NO,       ACCELERATOR=F6)
+   ACTION organize(TEXT="OrgTxt",IMAGE="refresh",COMMENT="Change directly group of texts",CONTEXTMENU=NO,        ACCELERATOR=F7)
+   ACTION search(TEXT="Search",IMAGE="find",COMMENT="Search text",CONTEXTMENU=NO,                                ACCELERATOR=F2)
+   ACTION groups(TEXT="Groups",IMAGE="group",COMMENT="Edit text groups",CONTEXTMENU=NO,                          ACCELERATOR=SHIFT-F2)
+   ACTION save(TEXT="Save",IMAGE="disk",COMMENT="Save to database",CONTEXTMENU=NO,                               ACCELERATOR=CONTROL-S)
+END
+
+TOPMENU
+  GROUP file (TEXT="File")
+    COMMAND import
+    COMMAND export
+    SEPARATOR
+    COMMAND save
+    SEPARATOR
+    COMMAND close
+  END
+  GROUP edit (TEXT="Edit")
+    COMMAND editcut
+    COMMAND editcopy
+    COMMAND editpaste
+  END
+  GROUP texts (TEXT="Texts")
+    COMMAND newtxt (TEXT="Create new text")
+    COMMAND deltxt (TEXT="Delete current text")
+    COMMAND cpytxt (TEXT="Copy current text")
+    COMMAND lcktxt (TEXT="Lock current text")
+    SEPARATOR
+    COMMAND prvtxt (TEXT="Previous text")
+    COMMAND nxttxt (TEXT="Next text")
+  END
+  GROUP tools (TEXT="Tools")
+    COMMAND search (TEXT="Search a string")
+    COMMAND organize (TEXT="Organize groups")
+    COMMAND delgroup (TEXT="Delete current group")
+  END
+  GROUP config (TEXT="Configuration")
+    COMMAND parameters (TEXT="Edit parameters")
+    SEPARATOR
+    COMMAND groups (TEXT="Edit groups")
+    COMMAND languages (TEXT="Edit languages")
+  END
+  GROUP help (TEXT="Help")
+    COMMAND help
+    COMMAND about (TEXT="About")
+  END
+END
+
+TOOLBAR ( BUTTONTEXTHIDDEN )
+  ITEM close
+  SEPARATOR
+  ITEM save
+  SEPARATOR
+  ITEM import
+  ITEM export
+  SEPARATOR
+  ITEM newtxt
+  ITEM deltxt
+  ITEM cpytxt
+  ITEM lcktxt
+  SEPARATOR
+  ITEM prvtxt
+  ITEM nxttxt
+  SEPARATOR
+  ITEM languages
+  ITEM groups
+  SEPARATOR
+  ITEM search
+  ITEM organize
+  ITEM delgroup
+  SEPARATOR
+  ITEM help
+END
+
+LAYOUT ( VERSION="1.02", STYLE="main2", TEXT="String Resource Tool" )
+GRID
+{
+<g g1                                                          >
+ Group: [grp                                                  ]
+
+<t t1                                                          >
+  Identifier                                      Num    Lock
+ [col1                                           |col2  |col3]
+ [col1                                           |col2  |col3]
+ [col1                                           |col2  |col3]
+ [col1                                           |col2  |col3]
+ [col1                                           |col2  |col3]
+ [col1                                           |col2  |col3]
+
+<g g2                                                          >
+  Identifier
+ [txtid                                                       ]
+  Original Text   [devlang                                    ]
+ [orgtext                                                     ]
+ [                                                            ]
+ [                                                            ]
+  Translated Text [curlang                                    ]
+ [txttext                                                     ]
+ [                                                            ]
+ [                                                            ]
+ [                                                            ]
+
+}
+END
+END
+
+TABLES
+FTTEXT
+END
+
+ATTRIBUTES
+GROUP g1 : group1, TEXT="String Group", GRIDCHILDRENINPARENT;
+TABLE t1 : table1, UNMOVABLECOLUMNS, UNHIDABLECOLUMNS;
+GROUP g2 : group2, TEXT="Translation";
+COMBOBOX grp     = FORMONLY.curgroup, SIZEPOLICY=DYNAMIC, NOT NULL, TABINDEX=2;
+EDIT col1        = fttext.fttext_ident, SCROLL, NOENTRY;
+EDIT col2        = fttext.fttext_num, COLOR=RED, NOENTRY;
+LABEL col3       = fttext.fttext_locked, JUSTIFY = CENTER;
+EDIT txtid       = FORMONLY.ident, SCROLL, TABINDEX=3;
+COMBOBOX devlang = FORMONLY.devlanguage, SIZEPOLICY=DYNAMIC, NOT NULL;
+TEXTEDIT orgtext = FORMONLY.orgtext, STRETCH=X, WANTNORETURNS, TABINDEX=4;
+COMBOBOX curlang = FORMONLY.curlanguage, SIZEPOLICY=DYNAMIC, NOT NULL;
+TEXTEDIT txttext = FORMONLY.thetext, STRETCH=X, WANTNORETURNS, TABINDEX=5;
+END
+
+INSTRUCTIONS
+SCREEN RECORD sa(
+   fttext.fttext_ident,
+   fttext.fttext_num,
+   fttext.fttext_locked);
+END
+
