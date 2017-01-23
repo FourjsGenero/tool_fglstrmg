@@ -6,6 +6,8 @@ This tool handles localized strings translation with a database.
 You can import strings, search, group and translate to several languages,
 then produce .str string files from the database content.
 
+![Genero FGL Localized String Editor (GDC)](https://github.com/FourjsGenero/tool_fglstrmg/raw/master/docs/fglstrmg-screen-001.png)
+
 ## Prerequisites
 
 * Database server supported by Genero (tested with Informix IDS 12)
