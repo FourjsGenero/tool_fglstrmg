@@ -4,6 +4,9 @@ PROGMOD=fglstrmg.42m
 
 all: $(PROGMOD) $(FORMS)
 
+run: all
+	fglrun fglstrmg
+
 %.42f: %.per
 	fglform -M $<
 
