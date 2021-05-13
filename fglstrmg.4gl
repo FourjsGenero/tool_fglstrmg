@@ -471,10 +471,10 @@ END FUNCTION
 
 FUNCTION filename_toident(filename)
   DEFINE filename STRING
-  DEFINE ident base.stringbuffer
+  DEFINE ident base.StringBuffer
   DEFINE i,l INTEGER
   DEFINE c CHAR(1)
-  LET ident=base.stringbuffer.create()
+  LET ident=base.StringBuffer.create()
   CALL ident.append(filename)
   LET i=1
   LET l=ident.getLength()
@@ -706,7 +706,7 @@ FUNCTION fttext_import()
   LET filename = fglt_file_opendlg(NULL,importdir,NULL,importable_files,"sh")
   IF filename IS NULL THEN RETURN FALSE END IF
 
-  CALL ftparam_set("IMPORTDIR",os.Path.dirname(filename))
+  CALL ftparam_set("IMPORTDIR",os.Path.dirName(filename))
 
   LET newgroup = TRUE
   IF curgroup IS NOT NULL THEN
@@ -717,7 +717,7 @@ FUNCTION fttext_import()
   IF NOT newgroup THEN
      LET agroup = curgroup -- Import into current group
   ELSE
-     LET grpname = filename_toident(os.Path.basename(filename))
+     LET grpname = filename_toident(os.Path.baseName(filename))
      IF ftgroup_exists(grpname) THEN
         IF NOT __mbox_yn("Import",
           "The group '"||grpname||"' exists in the database, do you want to continue?","information") THEN
@@ -727,7 +727,7 @@ FUNCTION fttext_import()
      LET i=1
      WHILE ftgroup_exists(grpname)
         LET i=i+1
-        LET grpname = filename_toident(os.Path.basename(filename)) || "_" || i
+        LET grpname = filename_toident(os.Path.baseName(filename)) || "_" || i
      END WHILE
      IF confimp="y" THEN
         CALL __mbox_ok("Import",
@@ -1001,7 +1001,7 @@ FUNCTION fttext_export()
      LET fcnt=0
      LET int_flag = FALSE
      LET dirname = SFMT(exportdir, ftlang_getident(explanguage))
-     IF NOT os.Path.isdirectory(dirname) THEN
+     IF NOT os.Path.isDirectory(dirname) THEN
         IF NOT __mbox_yn("Export",SFMT("Directory %1 does not exist, create?", dirname), "question") THEN
            GOTO export_end
         END IF
@@ -1127,7 +1127,7 @@ FUNCTION list_lookup_fttext(d, t)
    DEFINE t INTEGER
    DEFINE n, g INTEGER
    SELECT fttext_group INTO g FROM fttext WHERE fttext_num=t
-   IF SQLCA.SQLCODE == 100 THEN RETURN END IF
+   IF sqlca.sqlcode == NOTFOUND THEN RETURN END IF
    LET curgroup = g
    CALL fttext_fill(curgroup)
    FOR n=1 TO arr_fttext.getLength()

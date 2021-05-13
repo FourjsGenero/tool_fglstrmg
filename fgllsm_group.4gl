@@ -116,6 +116,7 @@ END FUNCTION
 
 FUNCTION ftgroup_check_changed(d)
   DEFINE d ui.Dialog
+  LET d = NULL
   IF changing THEN
      CALL __mbox_ok("Groups","You must first save your changes.","stop")
      RETURN FALSE

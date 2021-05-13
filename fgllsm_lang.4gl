@@ -118,6 +118,7 @@ END FUNCTION
 
 FUNCTION ftlang_check_changed(d)
   DEFINE d ui.Dialog
+  LET d = NULL
   IF changing THEN
      CALL __mbox_ok("Languages","You must first save your changes.","stop")
      RETURN FALSE
