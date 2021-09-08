@@ -131,7 +131,7 @@ COMBOBOX grp     = FORMONLY.curgroup, SIZEPOLICY=DYNAMIC, NOT NULL, TABINDEX=2;
 EDIT col1        = fttext.fttext_ident, SCROLL, NOENTRY;
 EDIT col2        = fttext.fttext_num, COLOR=RED, NOENTRY;
 LABEL col3       = fttext.fttext_locked, JUSTIFY = CENTER;
-EDIT txtid       = FORMONLY.ident, SCROLL, TABINDEX=3;
+EDIT txtid       = FORMONLY.ident, NOT NULL, REQUIRED, SCROLL, TABINDEX=3;
 COMBOBOX devlang = FORMONLY.devlanguage, SIZEPOLICY=DYNAMIC, NOT NULL;
 TEXTEDIT orgtext = FORMONLY.orgtext, STRETCH=X, WANTNORETURNS, TABINDEX=4;
 COMBOBOX curlang = FORMONLY.curlanguage, SIZEPOLICY=DYNAMIC, NOT NULL;
@@ -143,5 +143,11 @@ SCREEN RECORD sa(
    fttext.fttext_ident,
    fttext.fttext_num,
    fttext.fttext_locked);
+SCREEN RECORD sr1(
+   FORMONLY.ident,
+   FORMONLY.devlanguage,
+   FORMONLY.orgtext,
+   FORMONLY.curlanguage,
+   FORMONLY.thetext);
 END
 

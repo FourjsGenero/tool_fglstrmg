@@ -368,7 +368,7 @@ MAIN
        CALL list_setup(DIALOG)
 
     ON ACTION save
-       IF DIALOG.validate(NULL) < 0 THEN CONTINUE DIALOG END IF
+       IF DIALOG.validate("sr1.*") < 0 THEN CONTINUE DIALOG END IF
        LET i = DIALOG.getCurrentRow("sa")
        IF NOT text_save(DIALOG, i) THEN CONTINUE DIALOG END IF
        CALL list_setup(DIALOG)
@@ -386,6 +386,7 @@ FUNCTION text_save(d, row)
      IF NOT fttext_setident(txtnum,ident) THEN
         CALL __mbox_ok("Modify","SQL error:\n"||SQLERRMESSAGE,"stop")
         CALL d.nextField("ident")
+        RETURN FALSE
      END IF
   END IF
   IF d.getFieldTouched("orgtext") THEN
