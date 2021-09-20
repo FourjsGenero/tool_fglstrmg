@@ -11,7 +11,7 @@ SCHEMA fglstrmg
 
 CONSTANT toolname      = "fglstrmg"
 CONSTANT tooltitle     = "Localized String Manager"
-CONSTANT toolversion   = "2.1"
+CONSTANT toolversion   = "2.2"
 
 CONSTANT importable_files = "*.4gl|*.per|*.4tb|*.4tm|*.4sm|*.4ad"
 

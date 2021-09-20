@@ -30,11 +30,6 @@ TOPMENU
     SEPARATOR
     COMMAND close
   END
-  GROUP edit (TEXT="Edit")
-    COMMAND editcut
-    COMMAND editcopy
-    COMMAND editpaste
-  END
   GROUP texts (TEXT="Texts")
     COMMAND newtxt (TEXT="Create new text")
     COMMAND deltxt (TEXT="Delete current text")
@@ -62,12 +57,7 @@ TOPMENU
 END
 
 TOOLBAR ( BUTTONTEXTHIDDEN )
-  ITEM close
-  SEPARATOR
   ITEM save
-  SEPARATOR
-  ITEM import
-  ITEM export
   SEPARATOR
   ITEM newtxt
   ITEM deltxt
@@ -77,17 +67,10 @@ TOOLBAR ( BUTTONTEXTHIDDEN )
   ITEM prvtxt
   ITEM nxttxt
   SEPARATOR
-  ITEM languages
-  ITEM groups
-  SEPARATOR
   ITEM search
-  ITEM organize
-  ITEM delgroup
-  SEPARATOR
-  ITEM help
 END
 
-LAYOUT ( VERSION="1.02", STYLE="main2", TEXT="String Resource Tool" )
+LAYOUT ( VERSION="1.03", STYLE="main2", TEXT="String Resource Tool" )
 GRID
 {
 <g g1                                                          >
