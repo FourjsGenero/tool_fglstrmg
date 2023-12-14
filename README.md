@@ -2,7 +2,7 @@
 
 ## Description
 
-This tool handles localized strings translation with a database.
+This Genero tool handles localized strings translation with a database.
 You can import strings, search, group and translate to several languages,
 then produce .str string files from the database content.
 
