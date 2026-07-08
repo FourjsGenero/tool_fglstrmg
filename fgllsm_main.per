@@ -2,7 +2,6 @@ SCHEMA fglstrmg
 
 ACTION DEFAULTS
 &include "comactdef.inc"
-   ACTION close(TEXT="Quit",IMAGE="quit",CONTEXTMENU=NO)
    ACTION import(TEXT="Import",IMAGE="import",COMMENT="Import strings from sources",CONTEXTMENU=NO,              ACCELERATOR=CONTROL-I)
    ACTION export(TEXT="Export",IMAGE="export",COMMENT="Generate STR files from database",CONTEXTMENU=NO,         ACCELERATOR=CONTROL-E)
    ACTION newtxt(TEXT="New",IMAGE="new",COMMENT="Create a new text",CONTEXTMENU=NO,                              ACCELERATOR=CONTROL-N)
@@ -12,12 +11,11 @@ ACTION DEFAULTS
    ACTION prvtxt(TEXT="Previous",IMAGE="prev",COMMENT="Move to previous text in list",CONTEXTMENU=NO,            ACCELERATOR=CONTROL-K)
    ACTION nxttxt(TEXT="Next",IMAGE="next",COMMENT="Move to next text in list",CONTEXTMENU=NO,                    ACCELERATOR=CONTROL-J)
    ACTION parameters(TEXT="Params",IMAGE="prop",COMMENT="Setup parameters",CONTEXTMENU=NO,                       ACCELERATOR=F3)
-   ACTION groups(TEXT="Groups",IMAGE="group",COMMENT="Edit groups",CONTEXTMENU=NO,                               ACCELERATOR=F4)
+   ACTION groups(TEXT="Groups",IMAGE="group",COMMENT="Edit text groups",CONTEXTMENU=NO,                          ACCELERATOR=F4)
    ACTION languages(TEXT="Langs",IMAGE="lingua",COMMENT="Edit languages",CONTEXTMENU=NO,                         ACCELERATOR=F5)
    ACTION delgroup(TEXT="DelGrp",IMAGE="garbage",COMMENT="Delete the whole group of texts",CONTEXTMENU=NO,       ACCELERATOR=F6)
    ACTION organize(TEXT="OrgTxt",IMAGE="refresh",COMMENT="Change directly group of texts",CONTEXTMENU=NO,        ACCELERATOR=F7)
    ACTION search(TEXT="Search",IMAGE="find",COMMENT="Search text",CONTEXTMENU=NO,                                ACCELERATOR=F2)
-   ACTION groups(TEXT="Groups",IMAGE="group",COMMENT="Edit text groups",CONTEXTMENU=NO,                          ACCELERATOR=SHIFT-F2)
    ACTION save(TEXT="Save",IMAGE="disk",COMMENT="Save to database",CONTEXTMENU=NO,                               ACCELERATOR=CONTROL-S)
 END
 
